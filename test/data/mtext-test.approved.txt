@@ -493,6 +493,7 @@
             "y": 3.720281475640653
           },
           "defaultLightingOn": true,
+          "defaultLightingType": 1,
           "frontClippingPlane": 0,
           "gridSpacing": {
             "x": 0.5,

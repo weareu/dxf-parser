@@ -18,6 +18,7 @@ import Polyline from './entities/polyline.js';
 import Solid from './entities/solid.js';
 import Spline from './entities/spline.js';
 import Text from './entities/text.js';
+import Hatch from './entities/hatch.js';
 //import Vertex from './entities/.js';
 
 import log from 'loglevel';
@@ -163,6 +164,7 @@ function registerDefaultEntityHandlers(dxfParser: DxfParser) {
 	dxfParser.registerEntityHandler(Solid);
 	dxfParser.registerEntityHandler(Spline);
 	dxfParser.registerEntityHandler(Text);
+	dxfParser.registerEntityHandler(Hatch);
 	//dxfParser.registerEntityHandler(require('./entities/vertex'));
 }
 
@@ -196,7 +198,7 @@ export default class DxfParser {
 		const self = this;
 		return new Promise<IDxf>((res, rej) => {
 
-			stream.on('data', (chunk) => {
+			stream.on('data', (chunk : any) => {
 				dxfString += chunk;
 			});
 			stream.on('end', () => {
@@ -206,7 +208,7 @@ export default class DxfParser {
 					rej(err);
 				}
 			});
-			stream.on('error', (err) => {
+			stream.on('error', (err: Error) => {
 				rej(err);
 			});
 		});
@@ -701,7 +703,7 @@ export default class DxfParser {
 						curr = scanner.next();
 						break;
 					case 62: // color, visibility
-						layer.visible = curr.value >= 0;
+						layer.visible = curr.value as number >= 0;
 						// TODO 0 and 256 are BYBLOCK and BYLAYER respectively. Need to handle these values for layers?.
 						layer.colorIndex = Math.abs(curr.value as number);
 						layer.color = getAcadColor(layer.colorIndex as number);

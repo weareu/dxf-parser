@@ -21,7 +21,6 @@
 		"allowUnusedLabels": false,
 		"alwaysStrict": true,
 		"baseUrl": "",
-		"charset": "utf8",
 		"declaration": true,
 		"inlineSourceMap": false,
 		"esModuleInterop": true,
@@ -37,7 +36,6 @@
 		],
 		"listFiles": false,
 		"listEmittedFiles": false,
-		"locale": "zh_CN",
 		"newLine": "lf",
 		"noEmit": false,
 		"moduleResolution": "node",
@@ -59,12 +57,10 @@
 		"skipLibCheck": true,
 		"stripInternal": false,
 		"suppressExcessPropertyErrors": false,
-		"suppressImplicitAnyIndexErrors": true,
 		"traceResolution": false,
 		"typeRoots": [],
 		"types": [
 			"node"
-		],
-		"watch": false
+		]
 	}
 }

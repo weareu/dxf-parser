@@ -5,6 +5,7 @@ export default {
 	output: {
 		filename: 'index.js',
 		path: resolve(dirname(new URL(import.meta.url).pathname), 'commonjs'),
+		hashFunction: 'sha256',
 		library: {
 			name: 'DxfParser',
 			type: 'umd',

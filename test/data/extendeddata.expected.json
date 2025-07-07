@@ -424,6 +424,7 @@
           },
           "orthographicType": 0,
           "defaultLightingOn": true,
+          "defaultLightingType": 1,
           "ambientColor": 250
         }
       ]
