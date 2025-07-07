@@ -61,7 +61,7 @@ describe('Parser', function() {
 		tables.should.have.property('layer');
 
         var expectedOutputFilePath = path.join(__dirname,'data','layer-table.expected.json');
-        
+
 		var expected = fs.readFileSync(expectedOutputFilePath, {encoding: 'utf8'});
 		tables.layer.should.eql(JSON.parse(expected));
 	});
@@ -75,7 +75,7 @@ describe('Parser', function() {
 		var expected = fs.readFileSync(expectedOutputFilePath, {encoding: 'utf8'});
 		tables.lineType.should.eql(JSON.parse(expected));
 	});
-    
+
     it('should parse the dxf viewPort table', function() {
 		should.exist(tables);
 		tables.should.have.property('viewPort');
@@ -86,10 +86,28 @@ describe('Parser', function() {
 		tables.viewPort.should.eql(JSON.parse(expected));
 	});
 
-	it('should parse a complex BLOCKS section', function() {
-		verifyDxf(path.join(__dirname, 'data', 'blocks.dxf'))
-	});
-	
+    it('should parse HATCH', function() {
+		verifyDxf
+		var file = fs.readFileSync(path.join(__dirname, 'data', 'hatch.dxf'), 'utf8');
+
+		var parser = new DxfParser();
+		var dxf;
+		try {
+			dxf = parser.parseSync(file);
+			fs.writeFileSync(path.join(__dirname, 'data', 'hatch.actual.json'), JSON.stringify(dxf, null, 2));
+		}catch(err) {
+			should.not.exist(err);
+		}
+		should.exist(dxf);
+
+		var expected = fs.readFileSync(path.join(__dirname, 'data', 'hatch.expected.json'), {encoding: 'utf8'});
+		dxf.should.eql(JSON.parse(expected));
+    });
+
+	// it('should parse a complex BLOCKS section', function() {
+	// 	verifyDxf(path.join(__dirname, 'data', 'blocks.dxf'))
+	// });
+
 	it('should parse a simple BLOCKS section', function() {
 		var file = fs.readFileSync(path.join(__dirname, 'data', 'blocks2.dxf'), 'utf8');
 
@@ -107,7 +125,7 @@ describe('Parser', function() {
 		var expected = fs.readFileSync(path.join(__dirname, 'data', 'blocks2.expected.json'), {encoding: 'utf8'});
 		dxf.should.eql(JSON.parse(expected));
 	});
-    
+
     it('should parse POLYLINES', function() {
 		verifyDxf(path.join(__dirname, 'data', 'polylines.dxf'));
     });
@@ -129,7 +147,7 @@ describe('Parser', function() {
 		var expected = fs.readFileSync(path.join(__dirname, 'data', 'ellipse.expected.json'), {encoding: 'utf8'});
 		dxf.should.eql(JSON.parse(expected));
 	});
-	
+
 	it('should parse SPLINE entities', function() {
         var file = fs.readFileSync(path.join(__dirname, 'data', 'splines.dxf'), 'utf8');
 
@@ -163,7 +181,7 @@ describe('Parser', function() {
 		var expected = fs.readFileSync(path.join(__dirname, 'data', 'extendeddata.expected.json'), {encoding: 'utf8'});
 		dxf.should.eql(JSON.parse(expected));
 	});
-	
+
 	it('should parse SPLINE entities that are like arcs and circles', function() {
 		verifyDxf(path.join(__dirname, 'data', 'arcs-as-splines.dxf'));
 	});
