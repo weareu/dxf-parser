@@ -42,7 +42,9 @@ export type EntityName = 'POINT'
 	| 'SPLINE'
 	| 'TEXT'
 	| 'VERTEX'
-	| 'HATCH';
+	| 'HATCH'
+	| 'MESH'
+	| 'HELIX';
 
 export default interface IGeometry {
 	ForEntityName: EntityName;

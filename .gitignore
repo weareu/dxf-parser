@@ -8,7 +8,5 @@ out.json
 *.actual.json
 .vscode/
 *.received.*
-commonjs/*.js
-esm/
 *.tgz
 *.lock

@@ -1,6 +1,6 @@
 import DxfArrayScanner, { IGroup } from '../DxfArrayScanner.js';
 import * as helpers from '../ParseHelpers.js';
-import IGeometry, { IEntity, IPoint } from './geomtry.js';
+import IGeometry, { IEntity } from './geomtry.js';
 
 // Interface for 2D points to match test expectations
 interface IPoint2D {
@@ -56,7 +56,7 @@ export default class Hatch implements IGeometry {
       lineType: '',
       lineTypeScale: 1,
       visible: true,
-      handle: '',
+      handle: 0,
       color: 0,
       inPaperSpace: false,
       ownerHandle: '',
@@ -74,7 +74,7 @@ export default class Hatch implements IGeometry {
           entity.patternName = curr.value as string;
           break;
         case 5: // Handle (override to ensure string)
-          entity.handle = curr.value as string;
+          entity.handle = curr.value as number;
           break;
         case 10: // Elevation point X
           entity.elevationX = curr.value as number;

@@ -104,6 +104,42 @@ describe('Parser', function() {
 		dxf.should.eql(JSON.parse(expected));
     });
 
+	it('should parse MESH', function() {
+		verifyDxf
+		var file = fs.readFileSync(path.join(__dirname, 'data', 'mesh.dxf'), 'utf8');
+
+		var parser = new DxfParser();
+		var dxf;
+		try {
+			dxf = parser.parseSync(file);
+			fs.writeFileSync(path.join(__dirname, 'data', 'mesh.actual.json'), JSON.stringify(dxf, null, 2));
+		}catch(err) {
+			should.not.exist(err);
+		}
+		should.exist(dxf);
+
+		var expected = fs.readFileSync(path.join(__dirname, 'data', 'mesh.expected.json'), {encoding: 'utf8'});
+		dxf.should.eql(JSON.parse(expected));
+    });
+
+	it('should parse MIXED', function() {
+		verifyDxf
+		var file = fs.readFileSync(path.join(__dirname, 'data', 'mixed.dxf'), 'utf8');
+
+		var parser = new DxfParser();
+		var dxf;
+		try {
+			dxf = parser.parseSync(file);
+			fs.writeFileSync(path.join(__dirname, 'data', 'mixed.actual.json'), JSON.stringify(dxf, null, 2));
+		}catch(err) {
+			should.not.exist(err);
+		}
+		should.exist(dxf);
+
+		var expected = fs.readFileSync(path.join(__dirname, 'data', 'mixed.expected.json'), {encoding: 'utf8'});
+		dxf.should.eql(JSON.parse(expected));
+    });
+
 	// it('should parse a complex BLOCKS section', function() {
 	// 	verifyDxf(path.join(__dirname, 'data', 'blocks.dxf'))
 	// });
