@@ -140,6 +140,25 @@ describe('Parser', function() {
 		dxf.should.eql(JSON.parse(expected));
     });
 
+	it('should parse 3DSOLID', function() {
+		verifyDxf
+		var file = fs.readFileSync(path.join(__dirname, 'data', 'solid.dxf'), 'utf8');
+
+		var parser = new DxfParser();
+		var dxf;
+		try {
+			dxf = parser.parseSync(file);
+			fs.writeFileSync(path.join(__dirname, 'data', 'solid.actual.json'), JSON.stringify(dxf, null, 2));
+		}catch(err) {
+			should.not.exist(err);
+		}
+		should.exist(dxf);
+
+		var expected = fs.readFileSync(path.join(__dirname, 'data', 'solid.expected.json'), {encoding: 'utf8'});
+		dxf.should.eql(JSON.parse(expected));
+    });
+
+
 	// it('should parse a complex BLOCKS section', function() {
 	// 	verifyDxf(path.join(__dirname, 'data', 'blocks.dxf'))
 	// });

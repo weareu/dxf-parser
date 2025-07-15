@@ -27,6 +27,7 @@ export interface IEntity {
 
 export type EntityName = 'POINT'
 	| '3DFACE'
+	| '3DSOLID'
 	| 'ARC'
 	| 'ATTDEF'
 	| 'CIRCLE'

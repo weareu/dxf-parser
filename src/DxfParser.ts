@@ -3,6 +3,7 @@ import DxfArrayScanner, { IGroup } from './DxfArrayScanner.js';
 import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex.js';
 
 import Face from './entities/3dface.js';
+import Solid3d from './entities/3dsolid.js';
 import Arc from './entities/arc.js';
 import AttDef from './entities/attdef.js';
 import Circle from './entities/circle.js';
@@ -167,6 +168,7 @@ function registerDefaultEntityHandlers(dxfParser: DxfParser) {
 	dxfParser.registerEntityHandler(Text);
 	dxfParser.registerEntityHandler(Hatch);
 	dxfParser.registerEntityHandler(Mesh);
+	dxfParser.registerEntityHandler(Solid3d);
 	//dxfParser.registerEntityHandler(require('./entities/vertex'));
 }
 

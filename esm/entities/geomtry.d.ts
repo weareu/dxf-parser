@@ -22,7 +22,7 @@ export interface IEntity {
     type: string;
     handle: number;
 }
-export type EntityName = 'POINT' | '3DFACE' | 'ARC' | 'ATTDEF' | 'CIRCLE' | 'DIMENSION' | 'MULTILEADER' | 'ELLIPSE' | 'INSERT' | 'LINE' | 'LWPOLYLINE' | 'MTEXT' | 'POLYLINE' | 'SOLID' | 'SPLINE' | 'TEXT' | 'VERTEX' | 'HATCH' | 'MESH' | 'HELIX';
+export type EntityName = 'POINT' | '3DFACE' | '3DSOLID' | 'ARC' | 'ATTDEF' | 'CIRCLE' | 'DIMENSION' | 'MULTILEADER' | 'ELLIPSE' | 'INSERT' | 'LINE' | 'LWPOLYLINE' | 'MTEXT' | 'POLYLINE' | 'SOLID' | 'SPLINE' | 'TEXT' | 'VERTEX' | 'HATCH' | 'MESH' | 'HELIX';
 export default interface IGeometry {
     ForEntityName: EntityName;
     parseEntity(scanner: DxfArrayScanner, curr: IGroup): IEntity;
